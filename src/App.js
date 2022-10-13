@@ -5,6 +5,13 @@ import { Footer } from "./MyComponents/Footer";
 import { Todos } from "./MyComponents/Todos";
 import { AddTodo } from "./MyComponents/AddTodo";
 import React, { useState, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 
 function App() {
   let initTodo;
@@ -46,12 +53,25 @@ function App() {
   }, [todos]);
 
   return (
-    <>
+    <><Router>
       <Header title="Todo List" />
-      <AddTodo addTodo={addTodo} />
-      <Todos todos={todos} onDelete={onDelete} />
+        <Switch>
+          <Route path="/" render={()=>{
+            return (
+              <>
+                <AddTodo addTodo={addTodo} />
+                <Todos todos={todos} onDelete={onDelete} />
+              </>
+            )
+          }}>
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+        </Switch>
+      
       <Footer />
-    </>
+    </Router></>
   );
 }
 
