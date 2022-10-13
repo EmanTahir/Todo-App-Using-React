@@ -10,9 +10,10 @@ export const AddTodo = ({ addTodo }) => {
       alert("Title or Description field cannot be Empty");
     } else {
       addTodo(title, desc);
+      setTitle("");
+      setDesc("");
     }
-    setTitle("");
-    setDesc("");
+    
   };
   return (
     <div className="container my-3">
